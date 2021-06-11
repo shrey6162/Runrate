@@ -1,8 +1,10 @@
 # Runrate
 Cricket news and live scores website created using ‘cric’ api, that features cricketing news, articles, live scores, players stats and team rankings.<br>
 <img align="center" alt="Runrate" height="50%" width="50%" src="https://user-images.githubusercontent.com/54352598/121645205-8be51380-cab1-11eb-8f59-714f3f0911ad.png" />
+<!DOCTYPE html>
 <html>
- <head><style>
+<head>
+<style>
   .Marquee-box {
      position: relative;
      display: inline-block;
@@ -44,15 +46,16 @@ Cricket news and live scores website created using ‘cric’ api, that features
      color: #000000;
      vertical-align: middle;
   }
-</style></head>
- <body>
+</style>
+</head>
+<body>
  <div class="Marquee-box">
    <marquee class="MyMarquee" id="my_marquee" direction="left" behavior="1" scrollamount="8" onmouseover="this.stop()" onmouseout="this.start()">
      <div>Development work in progress...!</div>
    </marquee>
  </div>
  </body>
- </html>
+</html>
 
 
 
