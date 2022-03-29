@@ -1,0 +1,357 @@
+<% include partials/header %>
+
+<% function checkHomeAndAwayScores(result){ %>
+	<% var teamsScore = [] %>
+	<% if(result.sport_event_status.period_scores[0].hasOwnProperty('away_score')){ %>
+		<% var homeScore = result.sport_event_status.period_scores[1].home_score + "/" + result.sport_event_status.period_scores[1].home_wickets %>
+		<% var awayScore = result.sport_event_status.period_scores[0].away_score + "/" + result.sport_event_status.period_scores[0].away_wickets %>					
+		<% var homeOvers = result.sport_event_status.period_scores[1].display_overs %>
+		<% var awayOvers = result.sport_event_status.period_scores[0].display_overs %>
+	<%} else{ %>
+		<% var homeScore = result.sport_event_status.period_scores[0].home_score + "/" + result.sport_event_status.period_scores[0].home_wickets %>
+		<% var awayScore = result.sport_event_status.period_scores[1].away_score + "/" + result.sport_event_status.period_scores[1].away_wickets %>					
+		<% var homeOvers = result.sport_event_status.period_scores[0].display_overs %>
+		<% var awayOvers = result.sport_event_status.period_scores[1].display_overs %>
+	<% } %>
+	<% teamsScore[0] = homeScore %>
+	<% teamsScore[1] = homeOvers %>
+	<% teamsScore[2] = awayScore %>
+	<% teamsScore[3] = awayOvers %>
+	<% return teamsScore %>
+<%} %>
+<% function returnHomeAndAwayPics(homeTeam,awayTeam){ %>
+	<% var teamsPic = [] %>
+	<% if(homeTeam == 'Australia'){ %>
+		<% var homePic = 'images/aus.png' %>
+		<% var homeId = "sr:competitor:142690" %>
+	<%}else if(homeTeam == 'Sri Lanka'){ %>
+		<% var homePic = 'images/sriLanka.png' %>
+	<% var homeId = "sr:competitor:142690" %>
+	<%}else if(homeTeam == 'Pakistan'){ %>
+		<% var homePic = 'images/pak.png' %>
+		<% var homeId = "sr:competitor:142704" %>
+	<%} else if(homeTeam == 'England'){ %>
+		<% var homePic = 'images/eng.png' %>
+		<% var homeId = "sr:competitor:107205" %>
+	<%} else if(homeTeam == 'India'){ %>
+		<% var homePic = 'images/ind.jpeg' %>
+		<% var homeId = "sr:competitor:107203" %>
+	<%} else if(homeTeam == 'South Africa'){ %>
+		<% var homePic = 'images/southAfrica.png' %>
+		<% var homeId = "sr:competitor:142708" %>
+	<%} else if(homeTeam == 'Zimbabwe'){ %>
+		<% var homePic = 'images/zim.jpeg' %>
+	<%} else if(homeTeam == 'West Indies'){ %>
+		<% var homePic = 'images/westIndies.png' %>
+		<% var homeId = "sr:competitor:142714" %>
+	<%}  else if(homeTeam == 'New Zealand'){ %>
+		<% var homePic = 'images/newz.jpeg' %>
+		<% var homeId = "sr:competitor:142702" %>
+	<%} else if(homeTeam == 'Scotland'){ %>
+		<% var homePic = 'images/scot.png' %>
+	<%} else if(homeTeam == 'Afghanistan'){ %>
+		<% var homePic = 'images/afgan.png' %>
+		<% var homeId = "sr:competitor:142688" %>
+	<%} else if(homeTeam.includes('Bangladesh') ){ %>
+		<% var homePic = 'images/bangla.png' %>
+		<% var homeId = "sr:competitor:142692" %>
+	<%}	else{ %>
+		<% var homePic = 'images/cricket.jpeg' %>
+		<% } %>
+	<% if(awayTeam == 'Australia'){ %>
+		<% var awayPic = 'images/aus.png' %>
+		<% var awayId = "sr:competitor:142690" %>
+	<%}else if(awayTeam == 'Sri Lanka'){ %>
+		<% var awayPic = 'images/sriLanka.png' %>
+		<% var awayId = "sr:competitor:142710" %>
+	<%}else if(awayTeam == 'Pakistan'){ %>
+		<% var awayPic = 'images/pak.png' %>
+		<% var awayId = "sr:competitor:142704" %>
+	<%} else if(awayTeam == 'England'){ %>
+		<% var awayPic = 'images/eng.png' %>
+		<% var awayId = "sr:competitor:107205" %>
+	<%} else if(awayTeam == 'India'){ %>
+		<% var awayPic = 'images/ind.jpeg' %>
+		<% var awayId = "sr:competitor:107203" %>
+	<%} else if(awayTeam == 'South Africa'){ %>
+		<% var awayPic = 'images/southAfrica.png' %>
+		<% var awayId = "sr:competitor:142708" %>
+	<%} else if(awayTeam == 'Zimbabwe'){ %>
+		<% var awayPic = 'images/zim.jpeg' %>
+	<%} else if(awayTeam == 'West Indies'){ %>
+		<% var awayPic = 'images/westIndies.png' %>
+		<% var awayId = "sr:competitor:142714" %>
+	<%}else if(awayTeam == 'New Zealand'){ %>
+		<% var awayPic = 'images/newz.jpeg' %>
+		<% var awayId = "sr:competitor:142702" %>
+	<%}  else if(awayTeam == 'Scotland'){ %>
+		<% var awayPic = 'images/scot.png' %>
+	<%} else if(awayTeam == 'Afghanistan'){ %>
+		<% var awayPic = 'images/afgan.png' %>
+		<% var awayId = "sr:competitor:142688" %>
+	<%} else if(awayTeam.includes('Bangladesh') ){ %>
+		<% var awayPic = 'images/bangla.png' %>
+		<% var awayId = "sr:competitor:142692" %>
+	<%} else{%>
+		<% var awayPic = 'images/cricket.jpeg' %>
+	<% }  %>
+	<% teamsPic[0] = homePic %>
+	<% teamsPic[1] = awayPic %>
+	<% teamsPic[2] = homeId %>
+	<% teamsPic[3] = awayId %>
+	<% return teamsPic %>
+<%} %>
+    <div class="hero-wrap js-fullheight" style="background-image: url('https://1.bp.blogspot.com/-2JHl3ZhOiio/TaPwvTXUFGI/AAAAAAAAAEc/5zWk-PQYDJw/s1600/8.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container" style="position : absolute;top : -20%;left : 20%">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+          <div class="col-md-6 mt-5 pt-5 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Run Rate</h1>
+            <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">For Cricket Lovers !!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+		<section class="ftco-section ftco-game-schedule ftco-no-pt" id="schedule">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 heading-section text-center ftco-animate mb-4">
+						<span class="subheading">Today Schedule</span>
+						<h2 class="mb-4">Today Schedule</h2>
+					</div>
+				</div>
+				<div class="row ftco-animate">
+					<div class="col-md-12 carousel-game-schedule owl-carousel">
+						<% schedule.forEach((result)=>{ %>
+							<div class="item">
+								<% var homeTeam = result.competitors[0].name %>
+								<% var awayTeam = result.competitors[1].name %>  
+								<% var pics = returnHomeAndAwayPics(homeTeam,awayTeam) %>
+								<div class="game-sched text-vs text-center" style="height : 250px">
+									 
+										<div class="d-flex sched-wrap">
+											<span class="vs">vs</span>
+											<div class="team-logo text-center">
+												<div class="img" style="background-image: url(<%=pics[0]%>);"></div>
+												<h3><span>  <a style="color : blue" href="/scheduleOf-<%=pics[2]%>"> <%=homeTeam%> </a> </span></h3>
+											</div>
+											<div class="team-logo text-center">
+												<div class="img" style="background-image: url(<%=pics[1]%>);"></div>
+												<h3><span>  <a style="color : blue" href="/scheduleOf-<%=pics[3]%>"><%=awayTeam%> </a> </span></h3>
+											</div>
+										</div>
+										<div class="text-center ftco-animate" style="position : absolute;bottom : 0;left : 35%">
+											<p class="mb-0"><a href="/match-<%=result.id%>" target="_blank" class="btn btn-black">More Details</a></p>
+										</div>
+									</div>
+				          		</div>
+						<% }) %>
+					</div>
+				</div>
+			</div>
+		</section>   
+
+    <section class="ftco-section ftco-team img" style="background-image:url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+    	<div class="overlay"></div>
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-6 heading-section heading-section-white text-center ftco-animate">
+          	<span class="subheading">Team Squad</span>
+            <h2 class="mb-4">Our Team <span>Squad</span></h2>
+            <p>Some of the best of cricketers who changed complexion of the game</p>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="carousel-team owl-carousel">
+				
+    				<div class="item">
+    					<div class="team-wrap text-center">
+		    				<div class="img" style="background-image: url(images/ponting.jpeg);"></div>
+		    				<div class="text">
+		    					<h3 class="mb-0">Ricky Ponting</h3>
+		    				</div>
+	    				</div>
+    				</div>
+    				<div class="item">
+    					<div class="team-wrap text-center">
+		    				<div class="img" style="background-image: url(images/viv.jpeg);"></div>
+		    				<div class="text">
+		    					<h3 class="mb-0">Viv Richards</h3>
+		    				</div>
+	    				</div>
+					</div>
+					<a href="/playerInfo-sr:player:673390">
+						<div class="item">
+							<div class="team-wrap text-center">
+								<div class="img" style="background-image: url(images/sachin.jpeg);"></div>
+								<div class="text">
+										<h3 class="mb-0">Sachin Tendulkar</h3>
+									
+								</div>
+							</div>
+						</div>
+					</a>	
+    				<div class="item">
+    					<div class="team-wrap text-center">
+		    				<div class="img" style="background-image: url(images/waugh.jpeg);"></div>
+		    				<div class="text">
+		    					<h3 class="mb-0">Steve Waugh</h3>
+		    				</div>
+	    				</div>
+    				</div>
+    				<div class="item">
+    					<div class="team-wrap text-center">
+		    				<div class="img" style="background-image: url(images/kallis.jpg);"></div>
+		    				<div class="text">
+		    					<h3 class="mb-0">Jaques Kallis </h3>
+		    				</div>
+	    				</div>
+    				</div>
+    				<div class="item">
+    					<div class="team-wrap text-center">
+		    				<div class="img" style="background-image: url(images/wasim.jpeg);"></div>
+		    				<div class="text">
+		    					<h3 class="mb-0">Wasim Akram</h3>
+		    				</div>
+	    				</div>
+    				</div>
+    				<div class="item">
+    					<div class="team-wrap text-center">
+		    				<div class="img" style="background-image: url(images/murli.jpg);"></div>
+		    				<div class="text">
+		    					<h3 class="mb-0">Muttiah Muralitharan</h3>
+		    				</div>
+	    				</div>
+    				</div>
+					<div class="item">
+    					<div class="team-wrap text-center">
+		    				<div class="img" style="background-image: url(images/shane.jpg);"></div>
+		    				<div class="text">
+		    					<h3 class="mb-0">Shane Warne</h3>
+		    				</div>
+	    				</div>
+    				</div>
+					<div class="item">
+    					<div class="team-wrap text-center">
+		    				<div class="img" style="background-image: url(images/Glenn.jpg);"></div>
+		    				<div class="text">
+		    					<h3 class="mb-0">Glenn McGrath</h3>
+		    				</div>
+	    				</div>
+    				</div>
+						<div class="item">
+    					<div class="team-wrap text-center">
+		    				<div class="img" style="background-image: url(images/jai.jpeg);"></div>
+		    				<div class="text">
+		    					<h3 class="mb-0">Sanath Jayasuriya</h3>
+		    				</div>
+	    				</div>
+    				</div>
+    				<div class="item">
+    					<div class="team-wrap text-center">
+		    				<div class="img" style="background-image: url(images/gilly.jpeg);"></div>
+		    				<div class="text">
+		    					<h3 class="mb-0">Adam Gilchrist</h3>
+		    				</div>
+	    				</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+   	<br>
+    <section class="ftco-section testimony-section slash">
+    	<div class="overlay"></div>
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+          	<span class="subheading">Great Words</span>
+            <h2 class="mb-4">by Iconic Players</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate justify-content-center">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap text-center">
+                  <div class="user-img mb-4" style="background-image: url(images/msd.jpeg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text p-3">
+                    <p class="mb-4">“Self-confidence has always been one of my good qualities. I am always very confident. It is in my nature to be confident, to be aggressive. And it applies in my batting as well as wicketkeeping.”.</p>
+                    <p class="name">Mahendra Singh Dhoni</p>
+                    <span class="position">World Cup Winning Captain</span>
+                  </div>
+                </div>
+			  </div>
+			  <a href="playerInfo-sr:player:815516">
+				<div class="item">
+					<div class="testimony-wrap text-center">
+					<div class="user-img mb-4" style="background-image: url(images/yuvraj.jpeg)">
+						<span class="quote d-flex align-items-center justify-content-center">
+						<i class="icon-quote-left"></i>
+						</span>
+					</div>
+					
+					<div class="text p-3">
+						<p class="mb-4">“I was not going to feel sorry for myself. No, why should I? When my form came back, or when I picked up wickets, or when I got player of the match, had I ever asked God, ‘why me?’ Of course not. So when the illness came I had no right to ask ‘why me?”</p>
+						<p class="name">Yuvraj Singh</p>
+						<span class="position">Man of Tournament in World Cup 2011</span>
+					</div>
+					</div>
+				</div>
+			  </a>
+              <div class="item">
+                <div class="testimony-wrap text-center">
+                  <div class="user-img mb-4" style="background-image: url(images/sourav.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text p-3">
+                    <p class="mb-4">"The best way to get away from a crisis and yet hold on the reins without performance is to find a godfather who would save you at crisis and fool the entire world..This is how it has worked for me"</p>
+                    <p class="name">Sourav Ganguly</p>
+                    <span class="position">Best Captain</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center">
+                  <div class="user-img mb-4" style="background-image: url(images/abd.jpeg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text p-3">
+                    <p class="mb-4">“No one is born hating another person because of the colour of his skin, or his background, or his religion. People must learn to hate, and if they can learn to hate, they can be taught to love, for love comes more naturally to the human heart.” </p>
+                    <p class="name">AB de Villiers</p>
+                    <span class="position">Modern Master</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center">
+                  <div class="user-img mb-4" style="background-image: url(images/dravid.jpeg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text p-3">
+                    <p class="mb-4">I was given a talent to play cricket. I don't know why I was given it. But I was. I owe it to all those who wish it had been them to give of my best, every day.</p>
+                    <p class="name">Rahul Dravid</p>
+                    <span class="position">Great Wall of India</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<br>
+	
+
+<% include partials/footer %>

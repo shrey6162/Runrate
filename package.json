@@ -1,0 +1,23 @@
+{
+  "name": "cricbuzz",
+  "version": "1.0.0",
+  "description": "A web application for cricket lovers as it will provide live scores and all sort of data with respect to cricket.\r FRONTEND : HTML 5, CSS 3, JS\r BACKEND : NODE-JS with EXPRESS FRAMEWORK",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "cricbuzz"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cool-ascii-faces": "^1.3.4",
+    "ejs": "^2.7.4",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15",
+    "request": "^2.88.0"
+  }
+}
